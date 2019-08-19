@@ -12,6 +12,19 @@ There is a shipping service. It helps Vietnamese buy products on Amazon website.
 <p>Open PowerShell Windows your project's directory and run below bellow command:</p>
 <pre><code>composer install</code></pre>
 
+## Usage
+<p>Add an order item to an order. </p>
+<pre><code>
+$order = new App\Model\Order\Order();
+$product = new Product(10, 3, 1, 2, 1, '');
+$orderItem = new OrderItem($product);
+$order->addItem($orderItem);
+
+$shippingFee = $orderItem->getShippingFee();
+$grossPrice = order->getGrossPrice();
+
+</code></pre>
+
 ## Testing
 <p>Open PowerShell Windows your project's directory and run below bellow command:</p>
 <pre><code> .\vendor\bin\phpunit .\tests\</code></pre>
