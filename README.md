@@ -9,7 +9,7 @@ There is a shipping service. It helps Vietnamese buy products on Amazon website.
 
 ## Installation
 <p>You need using <a href="https://getcomposer.org/" rel="nofollow">Composer</a> to install. Download and install Composer by following the official instructions.</p>
-<p>Open PowerShell Windows your project's directory and run below bellow command:</p>
+<p>Open PowerShell Windows your project's directory and run below command:</p>
 <pre><code>composer install</code></pre>
 
 ## Usage
@@ -26,5 +26,5 @@ $grossPrice = order->getGrossPrice();
 </code></pre>
 
 ## Testing
-<p>Open PowerShell Windows your project's directory and run below bellow command:</p>
+<p>Open PowerShell Windows your project's directory and run below command:</p>
 <pre><code> .\vendor\bin\phpunit .\tests\</code></pre>
