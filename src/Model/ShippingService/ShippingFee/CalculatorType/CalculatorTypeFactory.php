@@ -4,6 +4,11 @@ namespace App\Model\ShippingService\ShippingFee\CalculatorType;
 use App\Model\ShippingService\ShippingFee;
 use App\Model\ShippingService\ShippingFee\Exception\InvalidArgumentShippingFeeConfigException;
 
+/**
+ * @package    App\Model\ShippingService\ShippingFee
+ * @author     NgoLV <lavanngo@gmail.com>
+ * @version    2019-08-19
+ */
 class CalculatorTypeFactory
 {
 

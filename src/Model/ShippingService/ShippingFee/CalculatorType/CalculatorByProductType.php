@@ -3,6 +3,11 @@ namespace App\Model\ShippingService\ShippingFee\CalculatorType;
 
 use App\Model\Product\Product;
 
+/**
+ * @package    App\Model\ShippingService\ShippingFee
+ * @author     NgoLV <lavanngo@gmail.com>
+ * @version    2019-08-19
+ */
 class CalculatorByProductType extends CalculatorType
 {
     public function calculate(): Float

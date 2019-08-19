@@ -5,8 +5,17 @@ use App\Model\Product\Product;
 use App\Model\ShippingService\ShippingFee\Calculator;
 use App\Model\ShippingService\ShippingFee\CalculatorType\CalculatorTypeFactory;
 
+/**
+ * @package    App\Model\Order
+ * @author     NgoLV <lavanngo@gmail.com>
+ * @version    2019-08-19
+ */
 class OrderItem
 {
+    /**
+     * Product to buy.
+     * @var Product $product
+     */
     private $product;
     private $shippingFee = 0;
     private $itemPrice = 0;

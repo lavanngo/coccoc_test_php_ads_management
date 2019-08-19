@@ -1,5 +1,5 @@
 <?php
-namespace Tests\ShippingService\ShippingFee\CalculatorType;
+namespace Tests\Model\ShippingService\ShippingFee\CalculatorType;
 
 use App\Model\ShippingService\ShippingFee\CalculatorType\CalculatorByDimension;
 use App\Model\ShippingService\ShippingFee\CalculatorType\CalculatorByProductType;

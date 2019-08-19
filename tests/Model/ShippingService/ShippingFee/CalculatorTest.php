@@ -1,5 +1,5 @@
 <?php
-namespace Tests\ShippingService;
+namespace Tests\Model\ShippingService\ShippingFee;
 
 use App\Model\Product\Product;
 use App\Model\ShippingService\ShippingFee\Calculator;

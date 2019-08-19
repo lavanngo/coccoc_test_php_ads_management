@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Order;
+namespace Tests\Model\Order;
 
 use App\Model\Order\Order;
 use App\Model\Order\OrderItem;

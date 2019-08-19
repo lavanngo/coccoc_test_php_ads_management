@@ -4,10 +4,24 @@ namespace App\Model\ShippingService\ShippingFee;
 use App\Model\Product\Product;
 use App\Model\ShippingService\ShippingFee\CalculatorType\CalculatorType;
 
+/**
+ * @package    App\Model\ShippingService\ShippingFee
+ * @author     NgoLV <lavanngo@gmail.com>
+ * @version    2019-08-19
+ */
 class Calculator
 {
 
+    /**
+     * List calculator Types.
+     * @var array $calculatorTypes
+     */
     private $calculatorTypes = [];
+
+    /**
+     * Product to calculate shipping fee.
+     * @var Product $product
+     */
     private $product;
 
     public function addCalculatorType(CalculatorType $objCalculator)
@@ -45,7 +59,6 @@ class Calculator
                 $shippingFees[] = $calculator->calculate();
             }
         }
-        // var_dump($shippingFees);
         return max($shippingFees);
     }
 

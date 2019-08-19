@@ -1,15 +1,14 @@
 <?php
-namespace Tests\ShippingService;
+namespace Tests\Model\ShippingService\ShippingFee\CalculatorType;
 
 use App\Model\Product\Product;
-use App\Model\ShippingService\ShippingFee\CalculatorType\CalculatorByProductType;
+use App\Model\ShippingService\ShippingFee\CalculatorType\CalculatorByDimension;
 use PHPUnit\Framework\TestCase;
 
-class CalculatorByProductTypeTest extends TestCase
+class CalculatorByDimensionTest extends TestCase
 {
 
     protected $calculatorType;
-
     protected function setUp(): void
     {
 
@@ -18,21 +17,27 @@ class CalculatorByProductTypeTest extends TestCase
     private function initObject()
     {
         global $config;
-        $calculatorTypeConfig = $config['Shipping']['ShippingFeeCalculators']['CalculatorByProductType'];
-        $this->calculatorType = new CalculatorByProductType();
+        $calculatorTypeConfig = $config['Shipping']['ShippingFeeCalculators']['CalculatorByDimension'];
+        $this->calculatorType = new CalculatorByDimension();
         $this->calculatorType->setCoefficients($calculatorTypeConfig['Coefficients']);
     }
 
     public function testShippingFeeIsZero()
     {
         $this->initObject();
-        $product = new Product(10, 0, 1, 2, 1, 'zero');
+        $product = new Product(10, 5, 0, 2, 1, '');
         $this->calculatorType->setProduct($product);
         $shippingFee = $this->calculatorType->calculate();
         $this->assertEquals(0, $shippingFee);
 
         $this->initObject();
-        $product = new Product(10, '', 1, 0, 1, '');
+        $product = new Product(10, 5, 1, 0, 1, '');
+        $this->calculatorType->setProduct($product);
+        $shippingFee = $this->calculatorType->calculate();
+        $this->assertEquals(0, $shippingFee);
+
+        $this->initObject();
+        $product = new Product(10, 5, 1, 2, 0, '');
         $this->calculatorType->setProduct($product);
         $shippingFee = $this->calculatorType->calculate();
         $this->assertEquals(0, $shippingFee);
@@ -50,13 +55,13 @@ class CalculatorByProductTypeTest extends TestCase
         $product = new Product('', 5, 1, 1, 1, '');
         $this->calculatorType->setProduct($product);
         $shippingFee = $this->calculatorType->calculate();
-        $this->assertEquals(0, $shippingFee);
+        $this->assertEquals(11, $shippingFee);
 
         $this->initObject();
         $product = new Product('', '', 2, 1, 1, '');
         $this->calculatorType->setProduct($product);
         $shippingFee = $this->calculatorType->calculate();
-        $this->assertEquals(0, $shippingFee);
+        $this->assertEquals(22, $shippingFee);
 
         $this->initObject();
         $product = new Product('', '', '', 1, 1, '');
@@ -80,17 +85,57 @@ class CalculatorByProductTypeTest extends TestCase
     public function testShippingFeesAreCorrect()
     {
         $this->initObject();
-        $product = new Product(10, 1, 1, 2, 1, 'smart_phone');
+        $product = new Product(10, 5, 1, 2, 1, '');
         $this->calculatorType->setProduct($product);
         $shippingFee = $this->calculatorType->calculate();
         $this->assertIsFloat($shippingFee);
-        $this->assertEquals(15, $shippingFee);
+        $this->assertEquals(22, $shippingFee);
 
         $this->initObject();
-        $product = new Product(10, 1, 2, 2, 1, 'diamond');
+        $product = new Product(10, 5, 2, 2, 1, '');
         $this->calculatorType->setProduct($product);
         $shippingFee = $this->calculatorType->calculate();
         $this->assertIsFloat($shippingFee);
-        $this->assertEquals(25, $shippingFee);
+        $this->assertEquals(44, $shippingFee);
+
+        $this->initObject();
+        $product = new Product(10, 5, 2, 2, 1.5, '');
+        $this->calculatorType->setProduct($product);
+        $shippingFee = $this->calculatorType->calculate();
+        $this->assertIsFloat($shippingFee);
+        $this->assertEquals(66, $shippingFee);
     }
+
+    // public function testShippingFeeByWeightAmazonPriceIsZero()
+    // {
+    //     $order = new Order();
+    //     $product = new Product(0, 5, 1, 2, 1, '');
+    //     $order->addProduct($product);
+    //     $grossPrice = $order->getGrossPrice();
+
+    //     $this->assertIsFloat($grossPrice);
+    //     $this->assertEquals(55, $grossPrice);
+    // }
+
+    // public function testShippingFeeByWeight1()
+    // {
+    //     $order = new Order();
+    //     $product = new Product(20, 5, 1, 2, 1, '');
+    //     $order->addProduct($product);
+    //     $grossPrice = $order->getGrossPrice();
+
+    //     $this->assertIsFloat($grossPrice);
+    //     $this->assertEquals(75, $grossPrice);
+    // }
+
+    // public function testShippingFeeByWeight2()
+    // {
+    //     $order = new Order();
+    //     $product = new Product(20, 5.5, 1, 2, 1, '');
+    //     $order->addProduct($product);
+    //     $grossPrice = $order->getGrossPrice();
+
+    //     $this->assertIsFloat($grossPrice);
+    //     $this->assertEquals(80.5, $grossPrice);
+    // }
 }

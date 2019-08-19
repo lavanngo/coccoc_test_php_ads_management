@@ -1,7 +1,11 @@
 <?php
-// namespace App\Model\Product\Product;
 namespace App\Model\Product;
 
+/**
+ * @package    App\Model\Product
+ * @author     NgoLV <lavanngo@gmail.com>
+ * @version    2019-08-19
+ */
 class Product
 {
     private $amazonPrice;

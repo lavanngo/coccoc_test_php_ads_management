@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Order;
+namespace Tests\Model\Order;
 
 use App\Model\Order\OrderItem;
 use App\Model\Product\Product;
@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class OrderItemTest extends TestCase
 {
-
     protected $orderItem;
 
     public function testShippingFeeByWeightIsMax()

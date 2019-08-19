@@ -4,8 +4,17 @@ namespace App\Model\Order;
 use App\Model\Order\OrderItem;
 use App\Model\Product\Product;
 
+/**
+ * @package    App\Model\Order
+ * @author     NgoLV <lavanngo@gmail.com>
+ * @version    2019-08-19
+ */
 class Order
 {
+    /**
+     * Product to calculate shipping fee.
+     * @var array items to buy
+     */
     private $items = [];
 
     public function addProduct(Product $product)

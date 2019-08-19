@@ -2,19 +2,41 @@
 require __DIR__ . '/vendor/autoload.php';
 global $config;
 use App\Application\Order;
-use App\Models\Product\Product;
+use App\Model\Product\Product;
 
 $order = new Order();
 
 $product = new Product(10, 3, 1, 2, 1, '');
-$grossPrice1 = $order->buyProductOnAmazon($product);
-var_dump($grossPrice1);
+$grossPrice = $order->buyProductOnAmazon($product);
+echo "<pre>";
+echo "calculate gross fee with product, expacted gross price is 43:";
+var_dump($product);
+echo "</pre> gross Price = {$grossPrice}";
 
-// fee by weight = product weight x weight coefficient
-// fee by dimension = width x height x depth x dimension
-// $rs = $order->buyProductOnAmazon($product);
+echo "<br/>=======================<br/><br/><br/>";
+$products = [];
+$product = new Product(10, 3, 1, 2, 1, '');
+$products[] = $product;
+$product = new Product(15, 1, 1, 2, 1, '');
+$products[] = $product;
 
-// $order->addProduct($product);
-// $gp = $order->getGrossPrice();
+$grossPrice = $order->buyProductsOnAmazon($products);
+echo "<pre>";
+echo "calculate gross fee with 2 products, expacted gross price is 80 :";
+var_dump($products);
+echo "</pre> gross Price = {$grossPrice}";
 
-// var_dump($gp);
+echo "<br/>=======================<br/><br/><br/>";
+$products = [];
+$product = new Product(10, 3, 1, 2, 1, '');
+$products[] = $product;
+$product = new Product(15, 1, 1, 2, 1, '');
+$products[] = $product;
+$product = new Product(33, 1, 1, 1, 1, 'diamond');
+$products[] = $product;
+
+$grossPrice = $order->buyProductsOnAmazon($products);
+echo "<pre>";
+echo "calculate gross fee with 3 products, expacted gross price is 138 :";
+var_dump($products);
+echo "</pre> gross Price = {$grossPrice}";
