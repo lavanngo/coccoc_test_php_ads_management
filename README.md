@@ -14,5 +14,4 @@ There is a shipping service. It helps Vietnamese buy products on Amazon website.
 
 ## Testing
 <p>Open PowerShell Windows your project's directory and run below bellow command:</p>
-<pre><code>composer install</code></pre>
 <pre><code> .\vendor\bin\phpunit .\tests\</code></pre>
